@@ -54,8 +54,9 @@ Language.forEach = function forEach(items, callback) {
   items.forEach(item => callback(item))
 }
 
-Language.execute = function execute(fn) {
-  fn()
+Language.execute = function execute(callback) {
+  const [ , ...arg ] = arguments
+  callback(arg)
 }
 
 Language.call = function call(fn) {}
