@@ -61,6 +61,14 @@ Language.execute = function execute(callback) {
 
 Language.call = function call(fn) {}
 
-Language.evaluate = function evaluate(expressions) {}
+Language.evaluate = function evaluate(expressions) {
+    Language.forEach(expressions, expression => {
+      if (expression.type === 'define') {
+        Language.define(expression.name)
+      } else if (expression.type === 'assign') {
+        Language.assign(expression.name, expression.value)
+      }
+    })
+}
 
 export default Language
