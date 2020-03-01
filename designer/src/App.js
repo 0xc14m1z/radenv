@@ -1,9 +1,9 @@
 import React from 'react'
 
-const App = () => (
-  <div className="App">
+import { Router } from 'routing'
 
-  </div>
+const App = () => (
+  <Router />
 )
 
 export default App
