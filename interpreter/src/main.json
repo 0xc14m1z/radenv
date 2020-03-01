@@ -1,0 +1,16 @@
+{
+  "frontend": {
+    "expression": [
+      {
+        "type": "define",
+        "name": "a"
+      },
+      {
+        "type": "assign",
+        "name": "a",
+        "value": 4
+      }
+    ]
+  }
+
+}
