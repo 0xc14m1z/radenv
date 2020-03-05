@@ -8,6 +8,8 @@ import * as Pages from './pages'
 const Router = () => (
   <BrowserRouter>
     <Switch>
+      <Route exact path={ Paths.SIGN_UP } component={ Pages.SignUpPage } />
+
       <Route component={ Pages.NotFoundPage } />
     </Switch>
   </BrowserRouter>
