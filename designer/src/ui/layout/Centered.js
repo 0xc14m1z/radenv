@@ -1,17 +1,25 @@
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import styled from 'styled-components'
+
+const Container = styled.div `
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const Content = styled.div `
+  width: 90%;
+  max-width: 400px;
+`
 
 const Centered = ({ children }) => (
-  <Grid
-    centered
-    columns={ 3 }
-    verticalAlign="middle"
-    className="full-height"
-  >
-    <Grid.Column>
+  <Container>
+    <Content>
       { children }
-    </Grid.Column>
-  </Grid>
+    </Content>
+  </Container>
 )
 
 export { Centered }
