@@ -1,23 +1,16 @@
 import React from 'react'
-
-import { Grid, Header, Icon, Segment } from 'semantic-ui-react'
+import { Segment, Header, Icon } from 'semantic-ui-react'
+import { Layout } from 'ui/layout'
 
 const NotFoundPage = () => (
-  <Grid
-    centered
-    columns={ 3 }
-    verticalAlign="middle"
-    className="full-height"
-  >
-    <Grid.Column>
-      <Segment placeholder>
-        <Header icon>
-          <Icon name="ban" />
-          Page Not Found
-        </Header>
-      </Segment>
-    </Grid.Column>
-  </Grid>
+  <Layout.Centered>
+    <Segment placeholder>
+      <Header icon>
+        <Icon name="ban" />
+        Page Not Found
+      </Header>
+    </Segment>
+  </Layout.Centered>
 )
 
 export { NotFoundPage }
