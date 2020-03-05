@@ -1,16 +1,15 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
 
 import * as UI from 'semantic-ui-react'
 
 import { Form } from 'ui/forms'
-import { SIGN_IN } from 'routing/paths'
+import { SIGN_UP } from 'routing/paths'
 
 const INITIAL_VALUES = {
   email: '',
-  password: '',
-  passwordConfirmation: ''
+  password: ''
 }
 
 const SCHEMA =
@@ -25,17 +24,13 @@ const SCHEMA =
       password:
         Yup
           .string()
-          .required('A password is required'),
-      passwordConfirmation:
-        Yup
-          .string()
-          .oneOf([Yup.ref('password')], 'Passwords don\'t match')
+          .required('A password is required')
     })
 
-const SignUpForm = ({ onSubmit }) => {
+const SignInForm = ({ onSubmit }) => {
   const history = useHistory()
 
-  const goToSignIn = () => history.push(SIGN_IN)
+  const goToSignUp = () => history.push(SIGN_UP)
 
   return (
     <Form
@@ -60,13 +55,6 @@ const SignUpForm = ({ onSubmit }) => {
               icon="asterisk"
               iconPosition="left"
             />
-            <Form.PasswordField
-              name="passwordConfirmation"
-              required
-              placeholder="password confirmation"
-              icon="asterisk"
-              iconPosition="left"
-            />
             <UI.Button
               type="submit"
               positive
@@ -74,13 +62,13 @@ const SignUpForm = ({ onSubmit }) => {
               labelPosition="left"
               disabled={ !isValid }
             >
-              <UI.Icon name="check circle outline" />
-              Sign Up
+              <UI.Icon name="key" />
+              Sign In
             </UI.Button>
             <UI.Button
               basic
-              content="Sign in"
-              onClick={ goToSignIn }
+              content="Create an account"
+              onClick={ goToSignUp }
             />
           </>
         )
@@ -89,4 +77,4 @@ const SignUpForm = ({ onSubmit }) => {
   )
 }
 
-export { SignUpForm }
+export { SignInForm }
