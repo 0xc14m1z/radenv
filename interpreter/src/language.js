@@ -12,6 +12,10 @@ Language.assign = function assign(identifier, value) {
   SCOPE[identifier] = value
 }
 
+Language.immediate = function immediate(value) {
+  return value
+}
+
 Language.plus = function plus(firstOperand, secondOperand) {
   return firstOperand + secondOperand
 }
@@ -55,11 +59,44 @@ Language.forEach = function forEach(items, callback) {
 }
 
 Language.execute = function execute(program) {
-  Language.forEach(program, statement => Language.evaluate(statement))
+  program.forEach(Language.evaluate)
 }
 
 Language.call = function call(fn) {}
 
-Language.evaluate = function evaluate(statement) {}
+Language.evaluate = function evaluate(statement) {
+  switch(statement.type) {
+    case "define":
+      Language.define(statement.identifier)
+      break
+    case "assign":
+      Language.assign(statement.identifier, Language.evaluate(statement.value))
+      break
+    case "immediate":
+      return Language.immediate(statement.value)
+    case "*":
+      return Language.multiply(
+                Language.evaluate(statement.firstOperand),
+                Language.evaluate(statement.secondOperand)
+             )
+   case "/":
+     return Language.divide(
+               Language.evaluate(statement.firstOperand),
+               Language.evaluate(statement.secondOperand)
+            )
+    case "+":
+      return Language.plus(
+                Language.evaluate(statement.firstOperand),
+                Language.evaluate(statement.secondOperand)
+             )
+   case "-":
+     return Language.minus(
+               Language.evaluate(statement.firstOperand),
+               Language.evaluate(statement.secondOperand)
+            )
+    default:
+      throw "Syntax Error"
+  }
+}
 
 export default Language
